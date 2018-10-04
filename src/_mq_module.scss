@@ -1,0 +1,17 @@
+@import "_media_queries.scss";
+
+html {
+	position: relative;
+
+	@include mq-1280 {
+		position: relative;
+	}
+
+	@include mq-960 {
+		position: relative;
+	}
+
+	@include mq-600 {
+		position: relative;
+	}
+}
