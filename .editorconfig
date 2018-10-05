@@ -1,0 +1,38 @@
+root = true
+
+[*]
+# 改行コード
+end_of_line = lf
+# 最終行に改行を追加する
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.html]
+# インデントスタイル：タブ文字
+indent_style = space
+indent_size = 2
+
+[*.ejs]
+# インデントスタイル：タブ文字
+indent_style = space
+indent_size = 2
+
+[*.php]
+# インデントスタイル：タブ文字
+indent_style = tab
+
+[*.js]
+# インデントスタイル：2スペース
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[**.std]
+insert_final_newline = false
+
+[{package,bower}.json]
+indent_style = space
+indent_size = 2

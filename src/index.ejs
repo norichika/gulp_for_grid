@@ -1,0 +1,62 @@
+<%
+include ./_partial/_util.ejs
+%>
+<%
+var path = pathSet(filename);
+contentsData = {
+  "url"        : "https://www.example.com/" + path["absolute"],
+  "description": "page",
+  "parent": [
+    {
+      "name": "TOP",
+      "url" : "https://www.example.com"
+    }
+  ]
+}
+%>
+<%-
+include(path.relative + '_partial/_head.ejs', {
+siteData: siteData,
+contentsData: contentsData
+})
+%>
+<body>
+<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type" : "BreadcrumbList",
+		"itemListElement":[
+            {
+              "@type"   : "ListItem",
+              "position": 1,
+              "item"    : {
+                  "@id" : "https://example.jp/",
+                  "name": "ホーム"
+              }
+            },
+            {
+              "@type"   : "ListItem",
+              "position": 2,
+              "item"    : {
+                  "@id" : "https://example.jp/contentmarketing/",
+                  "name": "Content Marketing"
+              }
+            },
+            {
+              "@type"   : "ListItem",
+              "position": 3,
+              "item"    : {
+                "@id" : "https://example.jp/contentmarketing/what-is-contentmarketing",
+                "name": "What is Content Marketing?"
+              }
+		        }
+		]
+	}
+
+</script>
+
+
+</body>
+<%-
+include(path.relative + '_partial/_foot.ejs')
+%>

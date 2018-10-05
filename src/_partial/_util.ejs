@@ -1,0 +1,13 @@
+<%
+pathSet = function(path){
+  var absolutePath = path.split(src.srcDir)[path.split(src.srcDir).length -1].replace('.ejs','.html');
+  var relativePath = '../'.repeat([absolutePath.split('\\').length -1]);
+  absolutePath = absolutePath.replace(/\\/g, '/');
+  absolutePath = absolutePath.replace(/index.html/, '');
+  path = {
+    "absolute" : absolutePath,
+    "relative" : relativePath
+  }
+  return path;
+};
+%>
