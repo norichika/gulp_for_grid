@@ -1,4 +1,5 @@
 <%
+// 絶対パスと相対パスの出力
 pathSet = function(path){
   var absolutePath = path.split(src.srcDir)[path.split(src.srcDir).length -1].replace('.ejs','.html');
   var relativePath = '../'.repeat([absolutePath.split('\\').length -1]);
@@ -10,4 +11,54 @@ pathSet = function(path){
   }
   return path;
 };
+
+//Titleの出力
+titleSet = function(contents) {
+  var title = siteData['name'];
+  if(contents) {
+    title = contents + '｜' + title;
+  }
+  return title;
+}
+
+//OG typeの出力
+ogTypeCheck = function(parent) {
+  var type = 'website'
+  if(parent) {
+    type = 'article';
+  }
+  return type;
+}
+
+//OG imageの出力
+ogImageCheck = function(image) {
+  var imagePath = siteData["og_image"]
+  if(image) {
+    imagePath = image;
+  }
+  return imagePath;
+}
+
+//CSSパス追加
+cssAdd = function(path) {
+  if(path) {
+    var cssPath = ''
+    for (var i = 0; i < path.length; i++) {
+      cssPath += '  <link rel="stylesheet" href="' + path[i] + '">' + '\n';
+    }
+    return cssPath;
+  }
+}
+
+//JSパス追加
+jsAdd = function(path) {
+  if(path) {
+    var jsPath = ''
+    for (var i = 0; i < path.length; i++) {
+      jsPath += '  <script src="' + path[i] + '"></script>' + '\n';
+    }
+    return jsPath;
+  }
+}
+
 %>

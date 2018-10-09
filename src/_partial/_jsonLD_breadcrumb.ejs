@@ -1,0 +1,31 @@
+<script type="application/ld+json">
+  {
+		"@context": "http://schema.org",
+		"@type" : "BreadcrumbList",
+		"itemListElement":[
+  <% var length = 1; %>
+  <% if (contentsData.parent !== undefined) { %>
+		  <% length = contentsData.parent.length; %>
+        <% for (var i = 0; i < contentsData.parent.length; i++) { %>
+          {
+            "@type"   : "ListItem",
+            "position": <%= i + 1 %>,
+            "item"    : {
+                "@id" : <%= contentsData.parent[i]["url"] %>,
+                "name": <%= contentsData.parent[i]["name"] %>
+            }
+          },
+        <% } %>
+  <% } %>
+          {
+            "@type"   : "ListItem",
+            "position": <%= length %>,
+          "item"    : {
+              "@id" : <%= contentsData["url"] %>,
+              "name": <%= contentsData["name"] %>
+          }
+        }
+		]
+	}
+
+</script>

@@ -35,7 +35,8 @@ gulp.task('ejs', () => {
         "siteData": {
           "name": "サンプルサイト",
           "description": "メタディスクリプションになります。サンプルサイトになります。",
-          "url": "https://www.example.com"
+          "url": "https://www.example.com",
+          "og_image": "https://www.example.com/common/img/og.jpg"
         },
         "src": {
           "srcDir": "src\\",

@@ -1,22 +1,24 @@
-<!DOCTYPE html>
+<% include _util.ejs %><!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><%= siteData['name'] %></title>
+  <title><%= titleSet(contentsData['name']) %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="<%= contentsData['description'] %>">
-  <meta property="og:type" content="article">
-  <meta property="og:image" content="【見せたい画像URL】">
-  <meta property="og:title" content="<%= siteData['name'] %>">
+  <meta property="og:type" content="<%= ogTypeCheck(contentsData['parent']) %>">
+  <meta property="og:image" content="<%= ogImageCheck(contentsData['og_image']) %>">
+  <meta property="og:title" content="<%= ogTypeCheck(contentsData['parent']) %>">
   <meta property="og:description" content="<%= contentsData['description'] %>">
   <meta property="og:url" content="<%= contentsData['url'] %>">
-  <meta property="og:site_name" content="<%= siteData['url'] %>">
+  <meta property="og:site_name" content="<%= titleSet(contentsData['name']) %>">
   <meta property="og:locale" content="ja_JP">
   <meta content="summary" name="twitter:card">
   <meta content="@twitter_acount" name="twitter:site">
   <link rel="canonical" href="<%= contentsData['url'] %>">
   <link rel="shortcut icon" href="">
+  <link rel="apple-touch-icon" href="" sizes="180x180">
   <link rel="stylesheet" href="">
-  <script src=""></script>
+<%- cssAdd(contentsData['cssPath']) %>
+<%- jsAdd(contentsData['jsPath']) %>
 </head>
