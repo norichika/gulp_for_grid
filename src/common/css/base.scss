@@ -20,12 +20,12 @@ body {
 
 .container {
 	display: grid;
-	grid-template-columns: 200px 1fr;
-	grid-template-rows: 50px 1fr 50px;
+	grid-template-columns: 4fr 1fr;
+	grid-template-rows: auto auto auto;
 	grid-template-areas:
-			"aside header"
-			"aside main"
-			"aside footer";
+			"header header"
+			"main aside"
+			"footer footer";
 	@include mq-960 {
 		display: block;
 	}
@@ -37,16 +37,20 @@ body {
 
 header {
 	grid-area: header;
+	background-color: aliceblue;
 }
 
 aside {
 	grid-area: aside;
+	background-color: antiquewhite;
 }
 
 main {
 	grid-area: main;
+	background-color: cadetblue;
 }
 
 footer {
 	grid-area: footer;
+	background-color: darkgray;
 }
