@@ -8,6 +8,11 @@ const postcss = require('gulp-postcss');
 const csso    = require('gulp-csso');
 const ejs     = require('gulp-ejs');
 const data    = require('gulp-data');
+const svgmin  = require('gulp-svgmin');
+const changed = require('gulp-changed');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');  // 圧縮率を高めるのにプラグインを入れる png
+const mozjpeg = require('imagemin-mozjpeg');
 
 gulp.task('sass', () => {
   return gulp.src('./src/**/*.scss')
@@ -51,7 +56,48 @@ gulp.task('ejs', () => {
 		.pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('watch', function () {
+gulp.task('images', () => {
+  return gulp.src('./src/**/*.{png,jpg,gif}')
+    .pipe(changed('./dist/'))  // src と dist を比較して異なるものだけ処理
+    .pipe(imagemin([
+      pngquant({
+        quality: '65-80',  // 画質
+        speed: 1,  // 最低のスピード
+        floyd: 0,  // ディザリングなし
+      }),
+      mozjpeg({
+        quality: 85, // 画質
+        progressive: true
+      }),
+      imagemin.optipng(),
+      imagemin.gifsicle()
+    ]))
+    .pipe(gulp.dest('./dist/'))  // 保存
+    .pipe(notify('images task finished'));
+});
+
+gulp.task('svg', () => {
+  return gulp.src('src/svg/**/*.svg')
+    .pipe(svgmin({
+      plugins: [{
+        removeDoctype: true
+      }, {
+        removeComments: true
+      }, {
+        cleanupNumericValues: {
+          floatPrecision: 3
+        }
+      }, {
+        convertColors: {
+          names2hex: false,
+          rgb2hex: false
+        }
+      }]
+    }))
+    .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('watch', () => {
   gulp.watch('./src/**/*.scss', ['sass']);
   gulp.watch('./src/**/*.ejs', ['ejs']);
 });
